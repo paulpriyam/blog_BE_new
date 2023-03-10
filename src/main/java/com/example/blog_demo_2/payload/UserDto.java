@@ -1,5 +1,6 @@
 package com.example.blog_demo_2.payload;
 
+import com.example.blog_demo_2.entity.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,6 +8,8 @@ import lombok.Setter;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -26,4 +29,6 @@ public class UserDto {
 
     @NotEmpty(message = "About shouldn't be empty")
     private String about;
+
+    private Set<RoleDto> roles = new HashSet<>();
 }

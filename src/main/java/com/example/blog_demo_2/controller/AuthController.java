@@ -2,7 +2,9 @@ package com.example.blog_demo_2.controller;
 
 import com.example.blog_demo_2.payload.JwtAuthRequest;
 import com.example.blog_demo_2.payload.JwtAuthResponse;
+import com.example.blog_demo_2.payload.UserDto;
 import com.example.blog_demo_2.security.JwtTokenHelper;
+import com.example.blog_demo_2.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +31,9 @@ public class AuthController {
     private UserDetailsService userDetailsService;
 
     @Autowired
+    private UsersService usersService;
+
+    @Autowired
     private AuthenticationManager authenticationManager;
 
     @PostMapping("/login")
@@ -46,5 +51,11 @@ public class AuthController {
 
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userName, password);
         authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<UserDto> registerUser(@RequestBody UserDto userDto) {
+        UserDto newUser = usersService.registerNewUser(userDto);
+        return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 }
