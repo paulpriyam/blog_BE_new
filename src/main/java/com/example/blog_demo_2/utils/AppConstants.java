@@ -6,7 +6,7 @@ public class AppConstants {
     public static final String FILTER = "title";
     public static final String SORTED_BY = "asc";
 
-    public static final Integer NORMAL_USER = 502;
+    public static final Integer ROLE_NORMAL = 502;
 
-    public static final Integer ADMIN_USER = 501;
+    public static final Integer ROLE_ADMIN = 501;
 }
